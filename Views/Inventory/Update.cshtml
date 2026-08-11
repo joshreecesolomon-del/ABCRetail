@@ -1,0 +1,62 @@
+﻿@model ABCRetail.Models.InventoryModel
+
+@{
+    ViewData["Title"] = "Inventory Update";
+}
+
+<h2>Inventory Update</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.Message
+    </div>
+}
+
+<form asp-action="Update" method="post">
+
+    <div asp-validation-summary="All"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="ProductName"
+               class="form-label">
+            Product
+        </label>
+
+        <input asp-for="ProductName"
+               class="form-control"
+               placeholder="e.g. Samsung Galaxy S25" />
+
+        <span asp-validation-for="ProductName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quantity"
+               class="form-label">
+            New Quantity
+        </label>
+
+        <input asp-for="Quantity"
+               type="number"
+               min="0"
+               class="form-control" />
+
+        <span asp-validation-for="Quantity"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit"
+            class="btn btn-primary">
+        Update Inventory
+    </button>
+
+</form>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

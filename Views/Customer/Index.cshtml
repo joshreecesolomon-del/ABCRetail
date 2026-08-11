@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ABCRetail.Entities.CustomerEntity>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h2>Customers</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Customer</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Registered</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+@foreach(var customer in Model)
+{
+        <tr>
+            <td>@customer.FirstName @customer.LastName</td>
+            <td>@customer.Email</td>
+            <td>@customer.PhoneNumber</td>
+            <td>@customer.Address</td>
+            <td>@customer.RegistrationDate.ToShortDateString()</td>
+
+            <td>
+                <a asp-action="Delete"
+                   asp-route-partitionKey="@customer.PartitionKey"
+                   asp-route-rowKey="@customer.RowKey"
+                   class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+}
+
+    </tbody>
+</table>
