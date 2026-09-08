@@ -23,3 +23,5 @@ publish/
 
 # Logs
 *.log
+
+**/local.settings.json
